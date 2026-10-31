@@ -1,0 +1,226 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Archivo Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Big Shoulders Display Variable", "Archivo Variable", ui-sans-serif, sans-serif;
+
+  /* Black and white, with the volt (lime) from the Chat TCG logo as the one accent. */
+  --color-ink: #0b0b0c;
+  --color-ink-800: #161618;
+  --color-ink-700: #242427;
+  --color-paper: #f6f6f2;
+  --color-mist: #e9e9e4;
+  --color-volt: #b7df2f;
+  --color-volt-300: #d2ee70;
+  --color-volt-700: #4b6606;
+
+  --animate-blink: blink 1.1s steps(1) infinite;
+
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    @apply bg-paper font-sans text-ink antialiased;
+  }
+
+  ::selection {
+    @apply bg-volt text-ink;
+  }
+
+  /* Dark sections set --focus-ring to volt; on light ones ink keeps the contrast. */
+  :focus-visible {
+    outline: 2px solid var(--focus-ring, var(--color-ink));
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex cursor-pointer items-center justify-center gap-2.5 px-7 py-4 text-[0.78rem] leading-none font-semibold tracking-[0.2em] whitespace-nowrap uppercase transition duration-200;
+  }
+
+  .btn-volt {
+    @apply bg-volt text-ink hover:bg-paper;
+  }
+
+  /* Outline button for dark backgrounds. */
+  .btn-ghost {
+    @apply border border-paper/40 text-paper hover:border-paper hover:bg-paper hover:text-ink;
+  }
+
+  .btn-dark {
+    @apply bg-ink text-paper hover:bg-volt hover:text-ink;
+  }
+
+  /* Outline button for light backgrounds. */
+  .btn-outline {
+    @apply border border-ink text-ink hover:bg-ink hover:text-paper;
+  }
+
+  /* Underlined uppercase text link. */
+  .link-caps {
+    @apply inline-flex items-center gap-2 text-[0.78rem] font-semibold tracking-[0.2em] uppercase underline decoration-current/40 decoration-2 underline-offset-[7px] transition hover:decoration-volt;
+  }
+
+  .eyebrow {
+    @apply flex items-center gap-3 text-[0.72rem] font-semibold tracking-[0.3em] uppercase;
+
+    &::before {
+      content: "✦";
+      @apply text-[0.8rem] tracking-normal text-volt;
+    }
+  }
+
+  .section-title {
+    @apply font-display text-[3.4rem] leading-[0.86] font-extrabold tracking-[0.005em] text-balance uppercase sm:text-7xl lg:text-[5.75rem];
+  }
+
+  .skip-link {
+    @apply sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-volt focus:px-5 focus:py-3 focus:font-semibold focus:text-ink;
+  }
+
+  /* Clipped corners, like a ticket stub or a card in a toploader. */
+  .notch {
+    --notch: 0.9rem;
+    clip-path: polygon(
+      var(--notch) 0,
+      calc(100% - var(--notch)) 0,
+      100% var(--notch),
+      100% calc(100% - var(--notch)),
+      calc(100% - var(--notch)) 100%,
+      var(--notch) 100%,
+      0 calc(100% - var(--notch)),
+      0 var(--notch)
+    );
+  }
+
+  /* The header's hanging tab: a ribbon with a V cut into its bottom edge. */
+  .tab {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 50% calc(100% - 0.7rem), 0 100%);
+  }
+
+  /*
+   * Holographic trading card (see ui/holo.ts). JS sets --mx/--my (pointer position) and --rx/--ry
+   * (tilt) while the pointer is over a [data-holo] card; --foil fades the rainbow layer in. They're
+   * registered at the bottom of this file so they ease back when the pointer leaves.
+   */
+  .holo {
+    --rx: 0deg;
+    --ry: 0deg;
+    --mx: 50%;
+    --my: 50%;
+    --foil: 0;
+    transform: perspective(900px) rotateX(var(--rx)) rotateY(var(--ry));
+    transition-property: --rx, --ry, --mx, --my, --foil;
+    transition-duration: 0.7s, 0.7s, 0.7s, 0.7s, 0.4s;
+    transition-timing-function: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+    &[data-active] {
+      --foil: 0.42;
+      transition-duration: 0.08s, 0.08s, 0.08s, 0.08s, 0.4s;
+    }
+  }
+
+  /* The shop's own card rests at an angle with its foil showing. */
+  .holo-card,
+  .holo-card[data-active] {
+    --foil: 0.55;
+  }
+
+  .holo-card:not([data-active]) {
+    --rx: 4deg;
+    --ry: -10deg;
+    --mx: 32%;
+    --my: 28%;
+  }
+
+  .holo-foil,
+  .holo-glare {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+  }
+
+  .holo-foil {
+    background-image:
+      repeating-linear-gradient(115deg, #ff8bd8 0%, #ffe27a 7%, #8cffc1 14%, #6ee6ff 21%, #b197fc 28%, #ff8bd8 35%),
+      radial-gradient(circle at var(--mx) var(--my), rgb(255 255 255 / 0.5), transparent 60%);
+    background-size: 280% 280%, 100% 100%;
+    background-position: var(--mx) var(--my), center;
+    mix-blend-mode: color-dodge;
+    opacity: var(--foil);
+  }
+
+  .holo-glare {
+    background: radial-gradient(farthest-corner circle at var(--mx) var(--my), rgb(255 255 255 / 0.55), rgb(255 255 255 / 0.12) 30%, transparent 60%);
+    mix-blend-mode: overlay;
+    opacity: min(1, calc(var(--foil) * 2));
+  }
+
+  /* Scroll reveal (see ui/reveal.ts). */
+  .js [data-reveal] {
+    transition:
+      opacity 0.9s cubic-bezier(0.2, 0.7, 0.2, 1),
+      translate 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .js [data-reveal]:not([data-revealed]) {
+    opacity: 0;
+    translate: 0 1.5rem;
+  }
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@property --rx {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0deg;
+}
+
+@property --ry {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0deg;
+}
+
+@property --mx {
+  syntax: "<percentage>";
+  inherits: true;
+  initial-value: 50%;
+}
+
+@property --my {
+  syntax: "<percentage>";
+  inherits: true;
+  initial-value: 50%;
+}
+
+@property --foil {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}

@@ -1,0 +1,23 @@
+{
+  "name": "chattcg",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Official website for Chat TCG, a trading card game shop in Middle Village, Queens. Built and maintained by GradientV.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "tailwindcss": "^4.3.3",
+    "typescript": "~7.0.2",
+    "vite": "^6.4.5"
+  },
+  "dependencies": {
+    "@fontsource-variable/archivo": "^5.3.0",
+    "@fontsource-variable/big-shoulders-display": "^5.3.0"
+  }
+}
