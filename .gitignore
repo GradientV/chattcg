@@ -3,3 +3,18 @@ dist
 .vercel
 *.local
 .DS_Store
+
+# Dependencies, build output, secrets and OS files
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+Thumbs.db
+
+# Notes, research and AI agent files: kept on this computer, never pushed
+AGENTS.md
+AGENTS-TEMPLATE/
+RESEARCH.md
+/context/
+/Context/
