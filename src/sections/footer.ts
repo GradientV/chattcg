@@ -2,7 +2,7 @@ import { hours } from '../data/hours.ts'
 import { site } from '../data/site.ts'
 import { summarizeWeek } from '../lib/hours.ts'
 import { html } from '../lib/html.ts'
-import { badge, container, external, socialLink, wordmark } from './ui.ts'
+import { container, external, socialLink, wordmark } from './ui.ts'
 
 const heading = 'text-[0.68rem] font-semibold tracking-[0.3em] text-paper/45 uppercase'
 const link = 'transition hover:text-paper'
@@ -19,16 +19,13 @@ export function footer(): string {
   return html`<footer class="bg-ink text-paper [--focus-ring:var(--color-volt)]">
     <div class="${container} py-16 sm:py-20">
       <div class="grid gap-12 lg:grid-cols-12">
-        <div class="flex flex-col gap-8 sm:flex-row sm:items-center lg:col-span-5">
-          ${badge('footer-badge', 'relative size-28 shrink-0 text-paper')}
-          <div>
-            ${wordmark(true)}
-            <div class="mt-5 flex items-center gap-1">
-              <span class="mr-2 text-[0.68rem] font-semibold tracking-[0.3em] text-paper/45 uppercase">Follow us</span>
-              ${socialLink(site.links.instagram, 'instagram', 'Chat TCG on Instagram', 'text-paper/80 hover:text-volt')}
-              ${socialLink(site.links.facebook, 'facebook', 'Chat TCG on Facebook', 'text-paper/80 hover:text-volt')}
-              ${socialLink(site.links.discord, 'discord', 'Chat TCG on Discord', 'text-paper/80 hover:text-volt')}
-            </div>
+        <div class="lg:col-span-5">
+          ${wordmark(true)}
+          <div class="mt-5 flex items-center gap-1">
+            <span class="mr-2 text-[0.68rem] font-semibold tracking-[0.3em] text-paper/45 uppercase">Follow us</span>
+            ${socialLink(site.links.instagram, 'instagram', 'Chat TCG on Instagram', 'text-paper/80 hover:text-volt')}
+            ${socialLink(site.links.facebook, 'facebook', 'Chat TCG on Facebook', 'text-paper/80 hover:text-volt')}
+            ${socialLink(site.links.discord, 'discord', 'Chat TCG on Discord', 'text-paper/80 hover:text-volt')}
           </div>
         </div>
         <div class="grid gap-10 text-paper/70 sm:grid-cols-3 lg:col-span-7">

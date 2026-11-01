@@ -19,7 +19,8 @@ const FEATURES = [
 
 const pull = {
   photo: photos.customerPull,
-  title: 'Customer pull of the week',
+  // Not "of the week": the date on the card would make that claim go stale.
+  title: 'Customer pull',
   date: '2026-10-18',
   url: 'https://www.instagram.com/chattcg_nyc/p/DepdS-bNCo4/',
 }

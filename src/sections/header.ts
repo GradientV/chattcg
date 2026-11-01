@@ -26,7 +26,6 @@ const notice = html`<div class="grid grid-rows-[1fr] transition-[grid-template-r
   <div class="overflow-hidden transition-[visibility] duration-300 group-data-scrolled:invisible group-data-menu-open:invisible">
     <a class="block bg-paper text-ink transition hover:bg-volt" href="#official">
       <span class="${container} flex items-center justify-center gap-2 py-2 text-center text-[0.65rem] font-semibold tracking-[0.18em] uppercase sm:text-[0.7rem]">
-        ${icon('shield-alert', 'size-3.5 shrink-0')}
         <span>Walk-in only. We don’t sell online<span class="hidden sm:inline">, and chattcg.shop isn’t us</span>.</span>
         <span class="hidden underline underline-offset-4 sm:inline">Learn more</span>
       </span>
@@ -76,9 +75,9 @@ export function header(): string {
           (link) => html`<a class="border-b border-paper/15 py-4 font-display text-[2.75rem] leading-none font-extrabold uppercase" href="${link.href}">${esc(link.label)}</a>`,
         )}
         <div class="mt-8 grid gap-3 sm:grid-cols-2">
-          <a class="btn btn-volt" href="${site.links.directions}" ${external}>${icon('pin', 'size-4')} Get directions</a>
-          <a class="btn btn-ghost" href="${site.phoneHref}">${icon('phone', 'size-4')} Call ${site.phone}</a>
-          <a class="btn btn-ghost sm:col-span-2" href="${site.links.discord}" ${external}>${icon('discord', 'size-4')} Join our Discord</a>
+          <a class="btn btn-volt" href="${site.links.directions}" ${external}>Get directions</a>
+          <a class="btn btn-ghost" href="${site.phoneHref}">Call ${site.phone}</a>
+          <a class="btn btn-ghost sm:col-span-2" href="${site.links.discord}" ${external}>Join our Discord</a>
         </div>
         <p class="mt-8 text-sm tracking-[0.12em] text-paper/60 uppercase">${site.address.street}, ${site.address.locality}, ${site.address.region} ${site.address.postalCode}</p>
       </nav>

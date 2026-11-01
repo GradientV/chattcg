@@ -1,7 +1,6 @@
 import { products } from '../data/games.ts'
 import { site } from '../data/site.ts'
 import { esc, html } from '../lib/html.ts'
-import { icon } from '../lib/icons.ts'
 import { container, external } from './ui.ts'
 
 export function shelves(): string {
@@ -16,22 +15,19 @@ export function shelves(): string {
             graded cards. Stock moves fast, so ask before you make the trip.
           </p>
           <div class="mt-9 flex flex-wrap items-center gap-x-8 gap-y-4">
-            <a class="btn btn-dark" href="${site.links.instagramDm}" ${external}>${icon('message', 'size-4')} Ask about a card</a>
+            <a class="btn btn-dark" href="${site.links.instagramDm}" ${external}>Ask about a card</a>
             <a class="link-caps" href="#latest">See new arrivals</a>
           </div>
         </div>
       </div>
-      <ol class="border-t-2 border-ink lg:col-span-7" data-reveal>
+      <ul class="border-t-2 border-ink lg:col-span-7" data-reveal>
         ${products.map(
-          (product, i) => html`<li class="grid grid-cols-[3.5rem_1fr] gap-x-4 border-b border-ink/15 py-8 sm:grid-cols-[5rem_1fr]">
-            <span class="font-display text-3xl leading-none font-bold text-ink/30 sm:text-4xl">0${i + 1}</span>
-            <div>
-              <h3 class="font-display text-[2.1rem] leading-[0.95] font-extrabold uppercase sm:text-5xl">${esc(product.title)}</h3>
-              <p class="mt-3 max-w-xl leading-relaxed text-ink/65">${esc(product.text)}</p>
-            </div>
+          (product) => html`<li class="border-b border-ink/15 py-8">
+            <h3 class="font-display text-[2.1rem] leading-[0.95] font-extrabold uppercase sm:text-5xl">${esc(product.title)}</h3>
+            <p class="mt-3 max-w-xl leading-relaxed text-ink/65">${esc(product.text)}</p>
           </li>`,
         )}
-      </ol>
+      </ul>
     </div>
   </section>`
 }

@@ -4,6 +4,8 @@
   "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --allow-file-access-from-files \
     --hide-scrollbars --force-device-scale-factor=1 --window-size=1200,630 \
     --screenshot=public/og-image.png scripts/og-image.html
+  On Windows, use "C:\Program Files\Google\Chrome\Application\chrome.exe" with the same flags and
+  file:///<full path>/scripts/og-image.html as the page.
 -->
 <html lang="en">
   <head>
@@ -23,12 +25,9 @@
       body { width: 1200px; height: 630px; overflow: hidden; position: relative; background: #0b0b0c; color: #f6f6f2; font-family: "Archivo", sans-serif; }
       .copy { position: absolute; left: 72px; top: 70px; width: 600px; }
       .eyebrow { font-size: 17px; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: rgb(246 246 242 / 0.7); display: flex; align-items: center; gap: 14px; }
-      .eyebrow::before { content: "✦"; color: #b7df2f; letter-spacing: 0; }
-      .kicker { margin-top: 26px; font: 800 44px/1 "Big Shoulders", sans-serif; letter-spacing: 0.04em; text-transform: uppercase; color: rgb(246 246 242 / 0.8); }
+      .kicker { margin-top: 26px; font: 800 44px/1 "Big Shoulders", sans-serif; letter-spacing: 0.04em; text-transform: uppercase; }
       h1 { margin-top: 10px; font: 800 132px/0.84 "Big Shoulders", sans-serif; text-transform: uppercase; }
-      h1 span { color: #b7df2f; }
       .meta { position: absolute; left: 72px; bottom: 58px; display: flex; gap: 28px; font-size: 16px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: rgb(246 246 242 / 0.75); }
-      .meta b { color: #b7df2f; }
       .card { position: absolute; border-radius: 16px; background: #f6f6f2; padding: 10px; box-shadow: 0 30px 60px rgb(0 0 0 / 0.6); }
       .card img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 9px; }
       .card p { padding: 10px 4px 2px; font: 800 22px/0.95 "Big Shoulders", sans-serif; text-transform: uppercase; color: #0b0b0c; }
@@ -36,28 +35,26 @@
       .right { width: 228px; left: 938px; top: 120px; transform: rotate(10deg); }
       .brand { position: absolute; left: 790px; top: 64px; width: 252px; aspect-ratio: 5 / 7; border-radius: 14px; background: #b7df2f; padding: 9px; box-shadow: 0 40px 80px rgb(0 0 0 / 0.7); transform: perspective(900px) rotateX(4deg) rotateY(-10deg); }
       .inner { height: 100%; border-radius: 8px; background: #161618; padding: 12px; display: flex; flex-direction: column; }
-      .title { display: flex; justify-content: space-between; align-items: center; font: 800 28px/1 "Big Shoulders", sans-serif; text-transform: uppercase; }
-      .title small { font: 600 12px "Archivo", sans-serif; color: #b7df2f; }
+      .title { font: 800 28px/1 "Big Shoulders", sans-serif; text-transform: uppercase; }
       .art { position: relative; margin-top: 8px; aspect-ratio: 4 / 3; border-radius: 5px; overflow: hidden; display: grid; place-items: center; background: #242427; }
       .art::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(115deg, #ff8bd8 0%, #ffe27a 7%, #8cffc1 14%, #6ee6ff 21%, #b197fc 28%, #ff8bd8 35%); background-size: 280% 280%; background-position: 32% 28%; mix-blend-mode: color-dodge; opacity: 0.55; }
       .type { margin-top: 10px; padding: 4px 7px; background: rgb(246 246 242 / 0.1); font-size: 9.5px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; }
       .text { margin-top: 9px; font-size: 11.5px; line-height: 1.35; color: rgb(246 246 242 / 0.8); }
-      .text b { color: #f6f6f2; }
-      .foot { margin-top: auto; padding-top: 7px; border-top: 1px solid rgb(246 246 242 / 0.15); display: flex; justify-content: space-between; font-size: 8.5px; letter-spacing: 0.12em; text-transform: uppercase; color: rgb(246 246 242 / 0.55); }
+      .foot { margin-top: auto; padding-top: 7px; border-top: 1px solid rgb(246 246 242 / 0.15); font-size: 8.5px; letter-spacing: 0.12em; text-transform: uppercase; color: rgb(246 246 242 / 0.55); }
     </style>
   </head>
   <body>
     <div class="copy">
       <p class="eyebrow">Middle Village, Queens</p>
       <p class="kicker">Middle Village’s card shop</p>
-      <h1>Has entered<br /><span>the chat_</span></h1>
+      <h1>Has entered<br />the chat_</h1>
     </div>
-    <p class="meta"><span>66-73 69th St</span><span><b>✦</b> Buy · Sell · Trade</span><span><b>✦</b> Walk-in only</span></p>
+    <p class="meta"><span>66-73 69th St</span><span>Buy · Sell · Trade</span><span>Walk-in only</span></p>
     <div class="card left"><img src="../public/images/battle-decks-640.jpg" alt="" /><p>30th Celebration Battle Decks</p></div>
     <div class="card right"><img src="../public/images/charizard-pull-640.jpg" alt="" /><p>Customer pull: Charizard</p></div>
     <div class="brand">
       <div class="inner">
-        <div class="title">Chat TCG <small>★ 4.4</small></div>
+        <div class="title">Chat TCG</div>
         <div class="art">
           <svg width="108" height="108" viewBox="0 0 40 40" style="position: relative; z-index: 1">
             <circle cx="20" cy="20" r="20" fill="#b7df2f" />
@@ -72,8 +69,8 @@
           </svg>
         </div>
         <div class="type">Card shop · Queens, NY</div>
-        <div class="text"><b>Buy · Sell · Trade · Chat.</b> Open play, weekly tournaments and a case full of singles.</div>
-        <div class="foot"><span>66-73 69th St</span><span>001/001 ✦</span></div>
+        <div class="text">Buy, sell, trade and chat. Open play, weekly tournaments and a case full of singles.</div>
+        <div class="foot">66-73 69th St</div>
       </div>
     </div>
   </body>

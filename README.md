@@ -11,7 +11,15 @@ Website for [Chat TCG](https://www.instagram.com/chattcg_nyc/), a trading card g
 
 ## Design
 
-Styled after [The Smith](https://thesmithrestaurant.com/): black and white with the volt (lime) from the Chat TCG logo as the only accent, tall condensed uppercase headlines, square buttons and underlined caps links, a split nav with the logo in the middle and a hanging "Directions" tab, notched black tiles for the games, and a round badge in the hero and footer. No gradients or pill-shaped chips.
+Styled after [The Smith](https://thesmithrestaurant.com/): black and white with the volt (lime) from the Chat TCG logo as the only accent, tall condensed uppercase headlines, square buttons and underlined caps links, a split nav with the logo in the middle and a hanging "Directions" tab, and notched black tiles for the games. No gradients or pill-shaped chips.
+
+Things we keep off this site because they read as AI-generated:
+
+- Two-color headlines (a line or word picked out in volt). Every headline is one color.
+- Icons in front of text: eyebrows, buttons, links and list rows are text only. Icon-only social links are fine.
+- Colored dots and circles (status dots, round badges). The logo mark is the one exception.
+- Numbered lists and steps, especially zero-padded numbers like 01 or 001/001.
+- Labels that go stale, like "of the week" on a dated post.
 
 The trading card theme comes from the holo cards: `photoCard()` in `src/sections/ui.ts` frames any photo as a card, and anything marked `data-holo` tilts toward the pointer and catches a rainbow foil (`.holo` in `src/styles.css`, `src/ui/holo.ts`). The hero's card for the shop itself uses `.holo-card`, which rests at an angle with the foil always showing. Both are self-contained, so they can be reused on other sites.
 
@@ -53,7 +61,6 @@ Vercel picks up `vercel.json` (build command, output folder, caching and securit
 - [ ] **Walk-in notice.** The header strip and the "We don't sell online" section name chattcg.shop, mirroring the shop's own Instagram warning. Get the owner to approve the wording.
 - [ ] **Photos.** All eight photos come from the shop's Instagram (Oct 2026). Get the owner's OK to use them, especially the customer-pull photo, which shows a customer's face. Ask for a few wide shots of the counter and play tables too: Instagram only gave us product close-ups.
 - [ ] **Logo.** The speech-bubble mark is a stand-in recreation of their Instagram avatar. Use their official logo once we have the file, and update `public/favicon.svg` and the OG image.
-- [ ] **Badge.** The round badge says "Est. 2025", based on their grand-opening post (December 2025). Confirm.
 - [ ] **Events.** The schedule comes from their Instagram poster (Oct 4, 2026). Confirm entry fees and formats for each event; we only know Friday Night Magic ($10, from the Wizards locator) and the Saturday Pokémon event ($5, 1 prize pack per win). The poster lists casual play at 10:30 PM, which we read as a typo for the 10:30 AM opening time.
 - [ ] **Phone.** Google, Facebook and the Wizards locator list (718) 690-1508; The Card Shop Finder lists 646-393-7441. Confirm, then claim that directory listing and fix it.
 - [ ] **Email.** `chattcg2025@gmail.com` is from their Facebook page. Confirm it's the inbox they want on the site.

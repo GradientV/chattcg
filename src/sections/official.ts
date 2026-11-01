@@ -1,17 +1,16 @@
 import { site } from '../data/site.ts'
 import { html } from '../lib/html.ts'
-import { icon, type IconName } from '../lib/icons.ts'
 import { container, external } from './ui.ts'
 
 const host = new URL(site.url).hostname.replace(/^www\./, '')
 
-const CHANNELS: { icon: IconName; label: string; value: string; href?: string }[] = [
-  { icon: 'globe', label: 'Website', value: host, href: '#top' },
-  { icon: 'instagram', label: 'Instagram', value: site.instagramHandle, href: site.links.instagram },
-  { icon: 'facebook', label: 'Facebook', value: site.legalName, href: site.links.facebook },
-  { icon: 'discord', label: 'Discord', value: 'Chat TCG community', href: site.links.discord },
-  { icon: 'phone', label: 'Phone', value: site.phone, href: site.phoneHref },
-  { icon: 'pin', label: 'Shop', value: `${site.address.street}, ${site.address.locality}` },
+const CHANNELS: { label: string; value: string; href?: string }[] = [
+  { label: 'Website', value: host, href: '#top' },
+  { label: 'Instagram', value: site.instagramHandle, href: site.links.instagram },
+  { label: 'Facebook', value: site.legalName, href: site.links.facebook },
+  { label: 'Discord', value: 'Chat TCG community', href: site.links.discord },
+  { label: 'Phone', value: site.phone, href: site.phoneHref },
+  { label: 'Shop', value: `${site.address.street}, ${site.address.locality}` },
 ]
 
 /**
@@ -34,18 +33,14 @@ export function official(): string {
         </p>
       </div>
       <div class="notch bg-paper p-7 text-ink sm:p-9 lg:col-span-5 [--focus-ring:var(--color-ink)]" data-reveal>
-        <h3 class="flex items-center gap-2.5 font-display text-3xl leading-none font-extrabold uppercase">
-          ${icon('shield-check', 'size-6')} Our official channels
-        </h3>
+        <h3 class="font-display text-3xl leading-none font-extrabold uppercase">Our official channels</h3>
         <ul class="mt-6 border-t-2 border-ink">
           ${CHANNELS.map(
             (channel) => html`<li class="flex items-center gap-4 border-b border-ink/15 py-3.5">
-              ${icon(channel.icon, 'size-[1.1rem] shrink-0 text-ink/60')}
               <span class="w-24 shrink-0 text-[0.68rem] font-semibold tracking-[0.2em] text-ink/50 uppercase">${channel.label}</span>
               ${channel.href
                 ? html`<a class="min-w-0 flex-1 truncate font-semibold hover:underline" href="${channel.href}" ${channel.href.startsWith('http') && external}>${channel.value}</a>`
                 : html`<span class="min-w-0 flex-1 truncate font-semibold">${channel.value}</span>`}
-              ${icon('check', 'size-4 shrink-0 text-volt-700')}
             </li>`,
           )}
         </ul>

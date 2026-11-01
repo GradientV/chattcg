@@ -10,9 +10,7 @@ const cardBack = html`<a class="@container block outline-offset-4" href="${site.
     <div class="flex size-full flex-col items-center justify-center gap-[5cqw] rounded-[2.5cqw] bg-ink text-center text-paper ring-[1.5cqw] ring-ink ring-inset">
       ${logoMark('size-[34cqw]')}
       <p class="font-display text-[9cqw] leading-[0.95] font-extrabold uppercase">More on<br />Instagram</p>
-      <p class="flex items-center gap-[1.5cqw] text-[4cqw] font-semibold tracking-[0.18em] text-volt uppercase">
-        ${icon('instagram', 'size-[4.5cqw]')} ${site.instagramHandle}
-      </p>
+      <p class="text-[4cqw] font-semibold tracking-[0.18em] text-paper/60 uppercase">${site.instagramHandle}</p>
     </div>
     <span class="holo-glare"></span>
   </div>
@@ -29,12 +27,7 @@ export function feed(): string {
         <a class="link-caps" href="${site.links.instagram}" ${external}>Follow ${site.instagramHandle} ${icon('arrow-up-right', 'size-4')}</a>
       </div>
       <ul class="mt-14 grid grid-cols-2 gap-x-4 gap-y-6 sm:gap-x-8 sm:gap-y-10 lg:grid-cols-3 lg:gap-x-12 lg:gap-y-14" data-reveal>
-        ${posts.map(
-          (post, i) => html`<li>${photoCard(post, {
-            sizes: '(min-width: 1024px) 28vw, 45vw',
-            number: `${String(i + 1).padStart(2, '0')}/${String(posts.length).padStart(2, '0')}`,
-          })}</li>`,
-        )}
+        ${posts.map((post) => html`<li>${photoCard(post, { sizes: '(min-width: 1024px) 28vw, 45vw' })}</li>`)}
         <li>${cardBack}</li>
       </ul>
     </div>

@@ -2,7 +2,6 @@ import { hours } from '../data/hours.ts'
 import { site } from '../data/site.ts'
 import { DAY_NAMES, formatHours, WEEK_ORDER } from '../lib/hours.ts'
 import { html } from '../lib/html.ts'
-import { icon } from '../lib/icons.ts'
 import { container, external, openStatus } from './ui.ts'
 
 function detail(label: string, content: string): string {
@@ -41,8 +40,8 @@ export function visit(): string {
           ${detail('Email', html`<a class="break-all hover:underline" href="mailto:${site.email}">${site.email}</a>`)}
         </dl>
         <div class="mt-9 flex flex-wrap gap-3">
-          <a class="btn btn-dark" href="${site.links.directions}" ${external}>${icon('pin', 'size-4')} Get directions</a>
-          <a class="btn btn-outline" href="${site.phoneHref}">${icon('phone', 'size-4')} Call the shop</a>
+          <a class="btn btn-dark" href="${site.links.directions}" ${external}>Get directions</a>
+          <a class="btn btn-outline" href="${site.phoneHref}">Call the shop</a>
         </div>
         <div class="mt-14">
           <div class="flex flex-wrap items-end justify-between gap-3 border-b-2 border-ink pb-3">

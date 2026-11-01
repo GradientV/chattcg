@@ -51,31 +51,12 @@ export function wordmark(large = false): string {
   </a>`
 }
 
-/**
- * Round badge with the shop's name running around the logo, after the one on The Smith's site.
- * `id` keeps each badge's text path unique on the page; `className` sets its position and size.
- */
-export function badge(id: string, className: string): string {
-  return html`<div class="grid place-items-center ${className}" aria-hidden="true">
-    <svg viewBox="0 0 120 120" class="absolute inset-0 size-full motion-safe:animate-[spin_40s_linear_infinite]">
-      <defs><path id="${id}" d="M60 60m-45 0a45 45 0 1 1 90 0a45 45 0 1 1-90 0" /></defs>
-      <circle cx="60" cy="60" r="58.5" fill="none" stroke="currentColor" stroke-width="1.2" />
-      <circle cx="60" cy="60" r="34" fill="none" stroke="currentColor" stroke-width="0.8" stroke-opacity="0.5" />
-      <text class="fill-current text-[9.5px] font-semibold tracking-[0.2em] uppercase">
-        <textPath href="#${id}" textLength="282">Chat TCG ✦ Card shop ✦ Est. 2025 ✦ Queens ✦</textPath>
-      </text>
-    </svg>
-    ${logoMark('relative size-[46%]')}
-  </div>`
-}
-
 /** Shown until ui/open-status.ts swaps in the live "Open now · until 7:30 PM" label. */
 const statusFallback = WEEK_ORDER.every((day) => hours[day]) ? 'Open 7 days a week' : `Closed ${WEEK_ORDER.filter((day) => !hours[day]).map((day) => `${DAY_NAMES[day]}s`).join(' & ')}`
 
 /** Live open/closed line; ui/open-status.ts keeps it current in New York time. */
 export function openStatus(className = ''): string {
-  return html`<p class="group/status inline-flex items-center gap-2.5 text-[0.72rem] font-semibold tracking-[0.2em] uppercase ${className}" data-open-status>
-    <span class="size-2 shrink-0 rounded-full bg-current/40 group-data-[state=closing]/status:bg-volt group-data-[state=open]/status:bg-volt"></span>
+  return html`<p class="text-[0.72rem] font-semibold tracking-[0.2em] uppercase ${className}" data-open-status>
     <span data-open-status-label>${statusFallback}</span>
   </p>`
 }
@@ -98,8 +79,6 @@ export function socialLink(href: string, iconName: 'instagram' | 'facebook' | 'd
 export interface PhotoCardOptions {
   /** The `sizes` attribute for the photo. */
   sizes: string
-  /** Set number printed on the card, e.g. "02/05". */
-  number?: string
   priority?: boolean
 }
 
@@ -124,7 +103,7 @@ export function photoCard(post: Post, options: PhotoCardOptions): string {
       <div class="flex items-end justify-between gap-[3cqw] px-[1.5cqw] pt-[4cqw] pb-[1.5cqw]">
         <p class="font-display text-[8cqw] leading-[0.95] font-extrabold uppercase">${esc(post.title)}</p>
         <p class="shrink-0 text-right text-[3.6cqw] leading-tight font-semibold tracking-[0.18em] text-ink/50 uppercase">
-          <time datetime="${post.date}">${formatDate(post.date)}</time>${options.number && html`<br />${options.number}`}
+          <time datetime="${post.date}">${formatDate(post.date)}</time>
         </p>
       </div>
       <span class="holo-glare"></span>
